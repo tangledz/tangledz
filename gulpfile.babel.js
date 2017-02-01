@@ -4,10 +4,10 @@ import gulp from 'gulp';
 import connect from 'gulp-connect';
 import babel from 'gulp-babel';
 import eslint from 'gulp-eslint';
+import ghPages from 'gulp-gh-pages';
 import del from 'del';
 import webpack from 'webpack-stream';
 import webpackConfig from './webpack.config.babel';
-
 
 const paths = {
   allSrcJs: 'src/**/*.js?(x)',
@@ -36,6 +36,12 @@ gulp.task('clean', () => del([
   paths.libDir,
   paths.clientBundle,
 ]));
+
+
+gulp.task('deploy', () => 
+  gulp.src('./dist/**/*')
+   .pipe(ghPages()),
+);
 
 gulp.task('build', ['lint', 'clean'], () =>
   gulp.src(paths.allSrcJs)
