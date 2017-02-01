@@ -37,10 +37,9 @@ gulp.task('clean', () => del([
   paths.clientBundle,
 ]));
 
-
-gulp.task('deploy', () => 
+gulp.task('deploy', () =>
   gulp.src('./dist/**/*')
-   .pipe(ghPages()),
+   .pipe(ghPages({ branch: 'master' })),
 );
 
 gulp.task('build', ['lint', 'clean'], () =>
