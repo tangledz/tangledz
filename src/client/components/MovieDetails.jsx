@@ -1,13 +1,16 @@
 import React, { PropTypes } from 'react';
+import DocumentTitle from 'react-document-title';
 
 const MovieDetail = ({ details }) => (
-  <article className="movie">
-    { details.Title } <br />
-    { details.Year } <br />
-    { details.Genre } <br />
-    { details.Actors } <br />
-    { details.Plot } <br />
-  </article>
+  <DocumentTitle title={details.Title}>
+    <article className="movie">
+      { details.Title } <br />
+      { details.Year } <br />
+      { details.Genre } <br />
+      { details.Actors } <br />
+      { details.Plot } <br />
+    </article>
+  </DocumentTitle>
 );
 
 MovieDetail.propTypes = {
