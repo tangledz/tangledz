@@ -1,14 +1,33 @@
-import React, { PropTypes } from 'react';
+import 'babel-polyfill';
+
+import React from 'react';
 import ReactDOM from 'react-dom';
 
-const App = props => (
-  <div>
-    Hello, {props.message}
-  </div>
+import { Provider } from 'react-redux';
+import { Router, Route, hashHistory } from 'react-router';
+import { viewMovies } from './actions';
+
+import MovieListContainer from './containers/MovieListContainer';
+import MovieDetailsContainer from './containers/MovieDetailsContainer';
+
+import configureStore from './configureStore';
+
+const store = configureStore;
+
+const App = () => (
+  <Provider store={store}>
+    <Router history={hashHistory}>
+      <Route
+        path="/list"
+        component={MovieListContainer}
+        onEnter={() => store.dispatch(viewMovies())}
+      />
+      <Route
+        path="/view/:id"
+        component={MovieDetailsContainer}
+      />
+    </Router>
+  </Provider>
 );
 
-App.propTypes = {
-  message: PropTypes.string.isRequired,
-};
-
-ReactDOM.render(<App message={'World'} />, document.querySelector('.app'));
+ReactDOM.render(<App />, document.querySelector('.app'));
