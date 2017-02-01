@@ -19,7 +19,7 @@ export function fetchDetails(id) {
   return (dispatch) => {
     console.log(id);
     dispatch(requestDetails(id));
-    return fetch(`http://www.omdbapi.com/?t=${id}&y=&plot=short&r=json`)
+    return fetch(`https://www.omdbapi.com/?t=${id}&y=&plot=short&r=json`)
       .then(response => response.json())
       .then(json => dispatch(receiveDetails(id, json)));
   };
