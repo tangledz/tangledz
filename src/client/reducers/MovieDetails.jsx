@@ -1,6 +1,6 @@
 import {
   REQUEST_DETAILS, RECEIVE_DETAILS, VIEW_DETAILS,
-} from '../actions';
+} from '../actions/DetailsActions';
 
 const initialState = {
   details: { title: '', director: '' },

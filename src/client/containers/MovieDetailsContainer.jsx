@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchDetails } from '../actions';
+import { fetchDetails } from '../actions/DetailsActions';
 import MovieDetails from '../components/MovieDetails';
 
 const mapStateToProps = state => ({ details: state.details.details });
