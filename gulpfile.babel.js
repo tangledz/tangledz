@@ -39,7 +39,10 @@ gulp.task('clean', () => del([
 
 gulp.task('deploy', () =>
   gulp.src('./dist/**/*')
-   .pipe(ghPages({ branch: 'master' })),
+   .pipe(ghPages({
+     branch: 'master',
+     remoteUrl: 'https://github.com/tangledz/tangledz',
+   })),
 );
 
 gulp.task('build', ['lint', 'clean'], () =>
