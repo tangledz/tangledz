@@ -1,16 +1,17 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import DocumentTitle from 'react-document-title';
 
 const MovieList = ({ movies }) => (
-  <DocumentTitle title={'Oscar Nominations'}>
-    <ul className="movie-list">
+  <div className="list-group">
+    <ul className="list-group">
+      <li className="list-group-item list-group-item-muted unselectable text-muted-dark">
+        <strong>Nominations</strong>
+      </li>
       {movies.map(movie => (
-        <li className="movie" key={movie}><Link to={`/view/${movie}`}>{movie}</Link></li>
-      ))
-    }
+        <li className="list-group-item list-group-item-condensed" key={movie}><Link to={`/view/${movie}`}>{movie}</Link></li>
+      ))}
     </ul>
-  </DocumentTitle>
+  </div>
 );
 
 MovieList.propTypes = {
