@@ -36855,9 +36855,8 @@
 	
 	function fetchDetails(id) {
 	  return function (dispatch) {
-	    console.log(id);
 	    dispatch(requestDetails(id));
-	    return (0, _isomorphicFetch2.default)('https://www.omdbapi.com/?t=' + id + '&y=&plot=short&r=json').then(function (response) {
+	    return (0, _isomorphicFetch2.default)('http://www.omdbapi.com/?t=' + id + '&y=2016&plot=short&r=json').then(function (response) {
 	      return response.json();
 	    }).then(function (json) {
 	      return dispatch(receiveDetails(id, json));
@@ -37360,23 +37359,145 @@
 	var MovieDetail = function MovieDetail(_ref) {
 	  var details = _ref.details;
 	  return _react2.default.createElement(
-	    "article",
-	    { className: "movie" },
-	    details.Title,
-	    " ",
-	    _react2.default.createElement("br", null),
-	    details.Year,
-	    " ",
-	    _react2.default.createElement("br", null),
-	    details.Genre,
-	    " ",
-	    _react2.default.createElement("br", null),
-	    details.Actors,
-	    " ",
-	    _react2.default.createElement("br", null),
-	    details.Plot,
-	    " ",
-	    _react2.default.createElement("br", null)
+	    "div",
+	    { className: "container-fluid" },
+	    _react2.default.createElement(
+	      "div",
+	      { className: "row" },
+	      _react2.default.createElement(
+	        "div",
+	        { className: "title-grid" },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "title-grid" },
+	          _react2.default.createElement(
+	            "div",
+	            { className: "title-content" },
+	            _react2.default.createElement(
+	              "h2",
+	              { className: "movie-name" },
+	              details.Title
+	            )
+	          )
+	        )
+	      )
+	    ),
+	    _react2.default.createElement(
+	      "div",
+	      { className: "tile-grid" },
+	      _react2.default.createElement(
+	        "div",
+	        { className: "tile tile-layout tile-tight" },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "media-row" },
+	          _react2.default.createElement(
+	            "div",
+	            { className: "stretch" },
+	            _react2.default.createElement(
+	              "h4",
+	              { className: "line-tighter" },
+	              details.Director
+	            ),
+	            _react2.default.createElement(
+	              "h5",
+	              { className: "line-tighter text-muted" },
+	              "Director"
+	            )
+	          )
+	        )
+	      ),
+	      _react2.default.createElement(
+	        "div",
+	        { className: "tile tile-layout tile-tight" },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "media-row" },
+	          _react2.default.createElement(
+	            "div",
+	            { className: "stretch" },
+	            _react2.default.createElement(
+	              "h4",
+	              { className: "line-tighter" },
+	              details.Writer
+	            ),
+	            _react2.default.createElement(
+	              "h5",
+	              { className: "line-tighter text-muted" },
+	              "Writer"
+	            )
+	          )
+	        )
+	      )
+	    ),
+	    _react2.default.createElement(
+	      "div",
+	      { className: "tile-grid" },
+	      _react2.default.createElement(
+	        "div",
+	        { className: "tile tile-layout tile-tight" },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "media-row" },
+	          _react2.default.createElement(
+	            "div",
+	            { className: "stretch" },
+	            _react2.default.createElement(
+	              "h4",
+	              { className: "line-tighter" },
+	              details.Actors
+	            ),
+	            _react2.default.createElement(
+	              "h5",
+	              { className: "line-tighter text-muted" },
+	              "Actors"
+	            )
+	          )
+	        )
+	      )
+	    ),
+	    _react2.default.createElement(
+	      "div",
+	      { className: "col-xs-12" },
+	      _react2.default.createElement(
+	        "div",
+	        { className: "progress-indicator" },
+	        _react2.default.createElement(
+	          "h5",
+	          null,
+	          "Critics consensus"
+	        ),
+	        _react2.default.createElement(
+	          "div",
+	          { className: "progress" },
+	          _react2.default.createElement("div", { className: "progress-bar progress-bar-info", style: { width: details.Metacritic } })
+	        ),
+	        _react2.default.createElement(
+	          "h5",
+	          { className: "pull-left text-muted" },
+	          "Metacritic score"
+	        ),
+	        _react2.default.createElement(
+	          "h3",
+	          { className: "pull-right text-info" },
+	          details.Metacritic
+	        )
+	      )
+	    ),
+	    _react2.default.createElement(
+	      "div",
+	      { className: "media-badge media-badge-warning img-circle" },
+	      _react2.default.createElement(
+	        "div",
+	        { className: "media-badge-container fa-inverse" },
+	        _react2.default.createElement(
+	          "h2",
+	          null,
+	          details.Metascore,
+	          "%"
+	        )
+	      )
+	    )
 	  );
 	};
 	
