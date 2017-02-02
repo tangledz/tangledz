@@ -4,7 +4,6 @@ import gulp from 'gulp';
 import connect from 'gulp-connect';
 import babel from 'gulp-babel';
 import eslint from 'gulp-eslint';
-import ghPages from 'gulp-gh-pages';
 import del from 'del';
 import webpack from 'webpack-stream';
 import webpackConfig from './webpack.config.babel';
@@ -36,14 +35,6 @@ gulp.task('clean', () => del([
   paths.libDir,
   paths.clientBundle,
 ]));
-
-gulp.task('deploy', () =>
-  gulp.src('./dist/**/*')
-   .pipe(ghPages({
-     branch: 'master',
-     remoteUrl: 'https://github.com/tangledz/tangledz',
-   })),
-);
 
 gulp.task('build', ['lint', 'clean'], () =>
   gulp.src(paths.allSrcJs)
