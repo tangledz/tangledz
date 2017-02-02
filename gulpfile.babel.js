@@ -17,7 +17,7 @@ const paths = {
   webpackFile: 'webpack.config.babel.js',
   libDir: 'lib',
   distDir: 'dist',
-  clientBundle: 'dist/client-bundle.js?(.map)',
+  clientBundle: 'dist/client-bundle.js?',
 };
 
 gulp.task('lint', () =>
@@ -54,7 +54,7 @@ gulp.task('watch', () => {
 
 gulp.task('connect', () =>
   connect.server({
-    root: 'dist',
+    root: '.',
     livereload: true,
   }),
 );

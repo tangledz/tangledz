@@ -38419,7 +38419,7 @@
 /* 580 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -38429,36 +38429,28 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactDocumentTitle = __webpack_require__(568);
-	
-	var _reactDocumentTitle2 = _interopRequireDefault(_reactDocumentTitle);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var MovieDetail = function MovieDetail(_ref) {
 	  var details = _ref.details;
 	  return _react2.default.createElement(
-	    _reactDocumentTitle2.default,
-	    { title: details.Title },
-	    _react2.default.createElement(
-	      'article',
-	      { className: 'movie' },
-	      details.Title,
-	      ' ',
-	      _react2.default.createElement('br', null),
-	      details.Year,
-	      ' ',
-	      _react2.default.createElement('br', null),
-	      details.Genre,
-	      ' ',
-	      _react2.default.createElement('br', null),
-	      details.Actors,
-	      ' ',
-	      _react2.default.createElement('br', null),
-	      details.Plot,
-	      ' ',
-	      _react2.default.createElement('br', null)
-	    )
+	    "article",
+	    { className: "movie" },
+	    details.Title,
+	    " ",
+	    _react2.default.createElement("br", null),
+	    details.Year,
+	    " ",
+	    _react2.default.createElement("br", null),
+	    details.Genre,
+	    " ",
+	    _react2.default.createElement("br", null),
+	    details.Actors,
+	    " ",
+	    _react2.default.createElement("br", null),
+	    details.Plot,
+	    " ",
+	    _react2.default.createElement("br", null)
 	  );
 	};
 	
