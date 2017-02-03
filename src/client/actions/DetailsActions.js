@@ -18,7 +18,7 @@ export const receiveDetails = (id, json) => ({
 export function fetchDetails(id) {
   return (dispatch) => {
     dispatch(requestDetails(id));
-    return fetch(`http://www.omdbapi.com/?t=${id}&y=2016&plot=short&r=json`)
+    return fetch(`https://www.omdbapi.com/?t=${id}&y=2016&plot=short&r=json`)
       .then(response => response.json())
       .then(json => dispatch(receiveDetails(id, json)));
   };

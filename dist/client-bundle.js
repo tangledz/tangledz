@@ -36870,7 +36870,7 @@
 	function fetchDetails(id) {
 	  return function (dispatch) {
 	    dispatch(requestDetails(id));
-	    return (0, _isomorphicFetch2.default)('http://www.omdbapi.com/?t=' + id + '&y=2016&plot=short&r=json').then(function (response) {
+	    return (0, _isomorphicFetch2.default)('https://www.omdbapi.com/?t=' + id + '&y=2016&plot=short&r=json').then(function (response) {
 	      return response.json();
 	    }).then(function (json) {
 	      return dispatch(receiveDetails(id, json));
