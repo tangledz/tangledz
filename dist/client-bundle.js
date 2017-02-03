@@ -36673,7 +36673,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var mapStateToProps = function mapStateToProps(state) {
-	  return { movies: state.list.movies };
+	  return { movies: state.list.movies, selected: state.selected };
 	};
 	
 	var MovieListContainer = (0, _reactRedux.connect)(mapStateToProps)(_MovieList2.default);
@@ -36720,14 +36720,10 @@
 	      movies.map(function (movie) {
 	        return _react2.default.createElement(
 	          "li",
-	          { className: "list-group-item list-group-item-condensed", key: movie },
-	          _react2.default.createElement(
-	            "button",
-	            { onClick: function onClick(e) {
-	                return liveStaxHandler(e, movie);
-	              } },
-	            movie
-	          )
+	          { className: "list-group-item list-group-item-condensed", key: movie, onClick: function onClick(e) {
+	              return liveStaxHandler(e, movie);
+	            } },
+	          movie
 	        );
 	      })
 	    )
@@ -36794,10 +36790,9 @@
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      Livestax.store.watch("best-picture-nominations.selection", function (movie) {
-	        console.log(window.location['hash']);
 	        if (window.location['hash'] != '#/view/' + movie) {
-	          window.location = '#/view/' + movie;
-	          window.location.reload();
+	          //        window.location = '#/view/' + movie;
+	          //        window.location.reload();
 	        }
 	      });
 	    }
@@ -37374,141 +37369,83 @@
 	  var details = _ref.details;
 	  return _react2.default.createElement(
 	    "div",
-	    { className: "container-fluid" },
+	    null,
 	    _react2.default.createElement(
 	      "div",
-	      { className: "row" },
+	      { className: "media-row" },
 	      _react2.default.createElement(
 	        "div",
-	        { className: "title-grid" },
+	        { className: "media-badge media-badge-warning img-circle" },
 	        _react2.default.createElement(
 	          "div",
-	          { className: "title-grid" },
+	          { className: "media-badge-container fa-inverse" },
 	          _react2.default.createElement(
-	            "div",
-	            { className: "title-content" },
-	            _react2.default.createElement(
-	              "h2",
-	              { className: "movie-name" },
-	              details.Title
-	            )
-	          )
-	        )
-	      )
-	    ),
-	    _react2.default.createElement(
-	      "div",
-	      { className: "tile-grid" },
-	      _react2.default.createElement(
-	        "div",
-	        { className: "tile tile-layout tile-tight" },
-	        _react2.default.createElement(
-	          "div",
-	          { className: "media-row" },
-	          _react2.default.createElement(
-	            "div",
-	            { className: "stretch" },
-	            _react2.default.createElement(
-	              "h4",
-	              { className: "line-tighter" },
-	              details.Director
-	            ),
-	            _react2.default.createElement(
-	              "h5",
-	              { className: "line-tighter text-muted" },
-	              "Director"
-	            )
+	            "h2",
+	            null,
+	            details.Metascore,
+	            "%"
 	          )
 	        )
 	      ),
 	      _react2.default.createElement(
 	        "div",
-	        { className: "tile tile-layout tile-tight" },
+	        { className: "stretch" },
 	        _react2.default.createElement(
-	          "div",
-	          { className: "media-row" },
-	          _react2.default.createElement(
-	            "div",
-	            { className: "stretch" },
-	            _react2.default.createElement(
-	              "h4",
-	              { className: "line-tighter" },
-	              details.Writer
-	            ),
-	            _react2.default.createElement(
-	              "h5",
-	              { className: "line-tighter text-muted" },
-	              "Writer"
-	            )
-	          )
-	        )
-	      )
-	    ),
-	    _react2.default.createElement(
-	      "div",
-	      { className: "tile-grid" },
-	      _react2.default.createElement(
-	        "div",
-	        { className: "tile tile-layout tile-tight" },
-	        _react2.default.createElement(
-	          "div",
-	          { className: "media-row" },
-	          _react2.default.createElement(
-	            "div",
-	            { className: "stretch" },
-	            _react2.default.createElement(
-	              "h4",
-	              { className: "line-tighter" },
-	              details.Actors
-	            ),
-	            _react2.default.createElement(
-	              "h5",
-	              { className: "line-tighter text-muted" },
-	              "Actors"
-	            )
-	          )
-	        )
-	      )
-	    ),
-	    _react2.default.createElement(
-	      "div",
-	      { className: "col-xs-12" },
-	      _react2.default.createElement(
-	        "div",
-	        { className: "progress-indicator" },
-	        _react2.default.createElement(
-	          "h5",
-	          null,
-	          "Critics consensus"
-	        ),
-	        _react2.default.createElement(
-	          "div",
-	          { className: "progress" },
-	          _react2.default.createElement("div", { className: "progress-bar progress-bar-info", style: { width: details.Metacritic } })
+	          "h4",
+	          { className: "line-tighter" },
+	          details.Title
 	        ),
 	        _react2.default.createElement(
 	          "h5",
-	          { className: "pull-left text-muted" },
-	          "Metacritic score"
-	        ),
-	        _react2.default.createElement(
-	          "h3",
-	          { className: "pull-right text-info" },
-	          details.Metacritic
+	          { className: "line-tighter text-muted" },
+	          details.Genre,
+	          " "
 	        )
 	      )
 	    ),
 	    _react2.default.createElement(
-	      "div",
-	      { className: "media-badge media-badge-warning img-circle" },
+	      "ul",
+	      { className: "list-group" },
 	      _react2.default.createElement(
-	        "div",
-	        { className: "media-badge-container fa-inverse" },
+	        "li",
+	        { className: "list-group-item" },
 	        _react2.default.createElement(
-	          "h2",
-	          null,
-	          details.Metascore,
-	          "%"
+	          "h4",
+	          { className: "line-tighter" },
+	          details.Director
+	        ),
+	        _react2.default.createElement(
+	          "h5",
+	          { className: "line-tighter text-muted" },
+	          "Director"
+	        )
+	      ),
+	      _react2.default.createElement(
+	        "li",
+	        { className: "list-group-item" },
+	        _react2.default.createElement(
+	          "h4",
+	          { className: "line-tighter" },
+	          details.Writer
+	        ),
+	        _react2.default.createElement(
+	          "h5",
+	          { className: "line-tighter text-muted" },
+	          "Writer"
+	        )
+	      ),
+	      _react2.default.createElement(
+	        "li",
+	        { className: "list-group-item" },
+	        _react2.default.createElement(
+	          "h4",
+	          { className: "line-tighter" },
+	          details.Actors
+	        ),
+	        _react2.default.createElement(
+	          "h5",
+	          { className: "line-tighter text-muted" },
+	          "Actors"
 	        )
 	      )
 	    )

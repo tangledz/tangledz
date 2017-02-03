@@ -9,8 +9,8 @@ const MovieList = ({ movies }) => (
         <strong>Nominations</strong>
       </li>
       {movies.map(movie => (
-        <li className="list-group-item list-group-item-condensed" key={movie}>
-          <button onClick={(e) => liveStaxHandler(e, movie)}>{movie}</button>
+        <li className="list-group-item list-group-item-condensed" key={movie} onClick={(e) => liveStaxHandler(e, movie)}>
+          {movie}
         </li>
       ))}
     </ul>
