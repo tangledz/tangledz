@@ -36791,8 +36791,8 @@
 	    value: function componentDidMount() {
 	      Livestax.store.watch("best-picture-nominations.selection", function (movie) {
 	        if (window.location['hash'] != '#/view/' + movie) {
-	          //        window.location = '#/view/' + movie;
-	          //        window.location.reload();
+	          window.location = '#/view/' + movie;
+	          window.location.reload();
 	        }
 	      });
 	    }
