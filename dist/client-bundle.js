@@ -36789,11 +36789,16 @@
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
 	      this.props.fetchDetails(this.props.params.id);
-	
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
 	      Livestax.store.watch("best-picture-nominations.selection", function (movie) {
-	        console.log('movie_selected', movie);
-	        window.location = '/#/view/' + movie;
-	        window.location.reload();
+	        console.log(window.location['hash']);
+	        if (window.location['hash'] != '#/view/' + movie) {
+	          window.location = '#/view/' + movie;
+	          window.location.reload();
+	        }
 	      });
 	    }
 	  }, {
