@@ -8,8 +8,13 @@ const mapStateToProps = state => ({ details: state.details.details });
 class MovieDetailsContainer extends React.Component {
 
   componentWillMount() {
-    console.log(this.props);
     this.props.fetchDetails(this.props.params.id);
+
+    Livestax.store.watch("best-picture-nominations.selection", function(movie) {
+      console.log('movie_selected', movie);
+      window.location = '/#/view/' + movie;
+      window.location.reload();
+    });
   }
 
   render() {

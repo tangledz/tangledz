@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
+
+const liveStaxHandler = (e, movie) => Livestax.store.set("selection", movie);
 
 const MovieList = ({ movies }) => (
   <div className="list-group">
@@ -8,7 +9,9 @@ const MovieList = ({ movies }) => (
         <strong>Nominations</strong>
       </li>
       {movies.map(movie => (
-        <li className="list-group-item list-group-item-condensed" key={movie}><Link to={`/view/${movie}`}>{movie}</Link></li>
+        <li className="list-group-item list-group-item-condensed" key={movie}>
+          <button onClick={(e) => liveStaxHandler(e, movie)}>{movie}</button>
+        </li>
       ))}
     </ul>
   </div>

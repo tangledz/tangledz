@@ -36684,7 +36684,7 @@
 /* 567 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -36694,34 +36694,38 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRouter = __webpack_require__(512);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var liveStaxHandler = function liveStaxHandler(e, movie) {
+	  return Livestax.store.set("selection", movie);
+	};
 	
 	var MovieList = function MovieList(_ref) {
 	  var movies = _ref.movies;
 	  return _react2.default.createElement(
-	    'div',
-	    { className: 'list-group' },
+	    "div",
+	    { className: "list-group" },
 	    _react2.default.createElement(
-	      'ul',
-	      { className: 'list-group' },
+	      "ul",
+	      { className: "list-group" },
 	      _react2.default.createElement(
-	        'li',
-	        { className: 'list-group-item list-group-item-muted unselectable text-muted-dark' },
+	        "li",
+	        { className: "list-group-item list-group-item-muted unselectable text-muted-dark" },
 	        _react2.default.createElement(
-	          'strong',
+	          "strong",
 	          null,
-	          'Nominations'
+	          "Nominations"
 	        )
 	      ),
 	      movies.map(function (movie) {
 	        return _react2.default.createElement(
-	          'li',
-	          { className: 'list-group-item list-group-item-condensed', key: movie },
+	          "li",
+	          { className: "list-group-item list-group-item-condensed", key: movie },
 	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: '/view/' + movie },
+	            "button",
+	            { onClick: function onClick(e) {
+	                return liveStaxHandler(e, movie);
+	              } },
 	            movie
 	          )
 	        );
@@ -36784,8 +36788,13 @@
 	  _createClass(MovieDetailsContainer, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
-	      console.log(this.props);
 	      this.props.fetchDetails(this.props.params.id);
+	
+	      Livestax.store.watch("best-picture-nominations.selection", function (movie) {
+	        console.log('movie_selected', movie);
+	        window.location = '/#/view/' + movie;
+	        window.location.reload();
+	      });
 	    }
 	  }, {
 	    key: 'render',
