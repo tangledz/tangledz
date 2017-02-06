@@ -27,12 +27,12 @@ const MovieDetail = ({ details }) => (
 		<h2 className="movie_name">{ details.Title } </h2>
 	      </div>
 	    </div>
-	    <div className="col-xs-4 text-right">
+	    <div className="col-xs-3 text-left">
 	      <div className="tile-content">
 		<h2 className="label_left text-muted">Rating</h2>
 	      </div>
 	    </div>
-	    <div className="col-xs-2"> 
+	    <div className="col-xs-3"> 
 	      <div className="tile-content text-center">
                 <div className="media-badge media-badge-info img-circle">
                   <div className="media-badge-container fa-inverse">
@@ -42,11 +42,7 @@ const MovieDetail = ({ details }) => (
 	      </div>
 	    </div>
 	  </div>
-	</div>
-	<div className="stretch">
-	  <h4 className="line-tighter">{ details.Title }</h4>
-	  <h5 className="line-tighter text-muted">{ details.Genre} </h5>
-	</div>
+        </div>
       </div>
       <ul className="list-group">
 	<li className="list-group-item">
