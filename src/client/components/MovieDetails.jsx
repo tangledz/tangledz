@@ -15,38 +15,59 @@ const NoInfo = () => (
 );
 
 const MovieDetail = ({ details }) => (
-<div>
-  {!details.Title && <NoInfo />}
-  {details.Title &&
-    <div>
-    <div className="media-row">
-      <div className="media-badge media-badge-warning img-circle">
-        <div className="media-badge-container fa-inverse">
-          <h2>{ details.Metascore }%</h2>
-        </div>
+  <div>
+    {!details.Title && <NoInfo />}
+    {details.Title &&
+      <div>
+	<div className="media-row">
+	<div className="row">
+	  <div className="tile tile-layout">
+	    <div className="col-xs-6">
+	      <div className="tile-content">
+		<h2 className="movie_name">{ details.Title } </h2>
+	      </div>
+	    </div>
+	    <div className="col-xs-4 text-right">
+	      <div className="tile-content">
+		<h2 className="label_left text-muted">Rating</h2>
+	      </div>
+	    </div>
+	    <div className="col-xs-2"> 
+	      <div className="tile-content text-center">
+		<div className="media-badge media-badge-primary img-circle">
+		  <span className="media-badge-container">
+		    <h3 className="lead"><i className="fa fa-trophy fa-inverse"></i></h3>
+		  </span>
+		  <span className="badge">
+		    <h1>{ details.Metascore }</h1>
+		  </span>
+		</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<div className="stretch">
+	  <h4 className="line-tighter">{ details.Title }</h4>
+	  <h5 className="line-tighter text-muted">{ details.Genre} </h5>
+	</div>
       </div>
-      <div className="stretch">
-        <h4 className="line-tighter">{ details.Title }</h4>
-        <h5 className="line-tighter text-muted">{ details.Genre} </h5>
-      </div>
+      <ul className="list-group">
+	<li className="list-group-item">
+	  <h4 className="line-tighter">{ details.Director }</h4>
+	  <h5 className="line-tighter text-muted">Director</h5>
+	</li>
+	<li className="list-group-item">
+	  <h4 className="line-tighter">{ details.Writer }</h4>
+	  <h5 className="line-tighter text-muted">Writer</h5>
+	</li>
+	<li className="list-group-item">
+	  <h4 className="line-tighter">{ details.Actors }</h4>
+	  <h5 className="line-tighter text-muted">Actors</h5>
+	</li>
+      </ul>
     </div>
-    <ul className="list-group">
-      <li className="list-group-item">
-        <h4 className="line-tighter">{ details.Director }</h4>
-        <h5 className="line-tighter text-muted">Director</h5>
-      </li>
-      <li className="list-group-item">
-        <h4 className="line-tighter">{ details.Writer }</h4>
-        <h5 className="line-tighter text-muted">Writer</h5>
-      </li>
-      <li className="list-group-item">
-        <h4 className="line-tighter">{ details.Actors }</h4>
-        <h5 className="line-tighter text-muted">Actors</h5>
-      </li>
-    </ul>
+    }     
   </div>
-  }     
-</div>
 );
 
 MovieDetail.propTypes = {
