@@ -1,17 +1,17 @@
 import React, { PropTypes } from 'react';
 
 const NoInfo = () => (
-<div className="notice" data-reactid=".0">
-  <div className="media-badge media-badge-lg media-badge-info-inverse img-circle" data-reactid=".0.0">
-    <span className="media-badge-container" data-reactid=".0.0.0">
-      <i className="fa fa-4x fa-flag" data-reactid=".0.0.0.0"></i>
-    </span>
+  <div className="notice" data-reactid=".0">
+    <div className="media-badge media-badge-lg media-badge-info-inverse img-circle" data-reactid=".0.0">
+      <span className="media-badge-container" data-reactid=".0.0.0">
+	<i className="fa fa-4x fa-flag" data-reactid=".0.0.0.0"></i>
+      </span>
+    </div>
+    <h2 className="text-info" data-reactid=".0.1">
+      <strong data-reactid=".0.1.0">No Movie Selected</strong>
+    </h2>
+    <p data-reactid=".0.2">Please select a movie to view its details </p>
   </div>
-  <h2 className="text-info" data-reactid=".0.1">
-    <strong data-reactid=".0.1.0">No Movie Selected</strong>
-  </h2>
-  <p data-reactid=".0.2">Please select a movie to view its details </p>
-</div>
 );
 
 const MovieDetail = ({ details }) => (
