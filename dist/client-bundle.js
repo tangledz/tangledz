@@ -36650,7 +36650,18 @@
 	var viewMovies = exports.viewMovies = function viewMovies() {
 	  return {
 	    type: VIEW_MOVIES,
-	    movies: ['Arrival', 'Fences', 'Hacksaw Ridge', 'Hell or High Water', 'Hidden Figures', 'La La Land', 'Lion', 'Manchester by the Sea', 'Moonlight']
+	    movies: ['Arrival', 'Fences', 'Hacksaw Ridge', 'Hell or High Water', 'Hidden Figures', 'La La Land', 'Lion', 'Manchester by the Sea', 'Moonlight'],
+	    selected_movie: 'Arrival'
+	  };
+	};
+	
+	var SELECT_MOVIE = exports.SELECT_MOVIE = 'SELECT_MOVIE';
+	
+	var selectMovie = exports.selectMovie = function selectMovie(id) {
+	  return {
+	    type: SELECT_MOVIE,
+	    selected_movie: id,
+	    id: id
 	  };
 	};
 
@@ -36670,13 +36681,24 @@
 	
 	var _MovieList2 = _interopRequireDefault(_MovieList);
 	
+	var _ListActions = __webpack_require__(565);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var mapStateToProps = function mapStateToProps(state) {
-	  return { movies: state.list.movies, selected: state.selected };
+	  return { movies: state.list.movies, selected_movie: state.list.selected_movie };
 	};
 	
-	var MovieListContainer = (0, _reactRedux.connect)(mapStateToProps)(_MovieList2.default);
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    onMovieClick: function onMovieClick(id) {
+	      Livestax.store.set("selection", movie);
+	      dispatch((0, _ListActions.selectMovie)(id));
+	    }
+	  };
+	};
+	
+	var MovieListContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_MovieList2.default);
 	
 	exports.default = MovieListContainer;
 
@@ -36696,12 +36718,10 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var liveStaxHandler = function liveStaxHandler(e, movie) {
-	  return Livestax.store.set("selection", movie);
-	};
-	
 	var MovieList = function MovieList(_ref) {
-	  var movies = _ref.movies;
+	  var movies = _ref.movies,
+	      selected_movie = _ref.selected_movie,
+	      onMovieClick = _ref.onMovieClick;
 	  return _react2.default.createElement(
 	    "div",
 	    { className: "list-group" },
@@ -36720,8 +36740,8 @@
 	      movies.map(function (movie) {
 	        return _react2.default.createElement(
 	          "li",
-	          { className: "list-group-item list-group-item-condensed", key: movie, onClick: function onClick(e) {
-	              return liveStaxHandler(e, movie);
+	          { className: "list-group-item list-group-item-condensed " + (selected_movie == movie && 'active'), key: movie, onClick: function onClick() {
+	              return onMovieClick(movie);
 	            } },
 	          movie
 	        );
@@ -36731,7 +36751,8 @@
 	};
 	
 	MovieList.propTypes = {
-	  movies: _react.PropTypes.arrayOf(_react2.default.PropTypes.string).isRequired
+	  movies: _react.PropTypes.arrayOf(_react2.default.PropTypes.string).isRequired,
+	  selected_movie: _react2.default.PropTypes.string
 	};
 	
 	exports.default = MovieList;
@@ -37536,7 +37557,8 @@
 	  value: true
 	});
 	var initialState = {
-	  movies: []
+	  movies: [],
+	  selected_movie: 'Arrival'
 	};
 	
 	var movieListReducer = function movieListReducer() {
@@ -37545,7 +37567,9 @@
 	
 	  switch (action.type) {
 	    case 'VIEW_MOVIES':
-	      return { movies: action.movies };
+	      return { movies: action.movies, selected_movie: action.selected_movie };
+	    case 'SELECT_MOVIE':
+	      return { movies: state.movies, selected_movie: action.selected_movie };
 	    default:
 	      return state;
 	  }
