@@ -3,7 +3,7 @@ import {
 } from '../actions/DetailsActions';
 
 const initialState = {
-  details: { Title: '' },
+  details: { title: '', director: '' },
 };
 
 const movieDetailsReducer = (state = initialState, action) => {

@@ -37380,167 +37380,86 @@
 	  return _react2.default.createElement(
 	    "div",
 	    null,
-	    details.Title && _react2.default.createElement(NoInfo, null),
-	    !details.Title && _react2.default.createElement(
+	    !details.Title && _react2.default.createElement(NoInfo, null),
+	    details.Title && _react2.default.createElement(
 	      "div",
-	      { className: "row js-incident" },
+	      null,
 	      _react2.default.createElement(
 	        "div",
-	        { className: "tile-grid" },
+	        { className: "media-row" },
 	        _react2.default.createElement(
 	          "div",
-	          { className: "row" },
+	          { className: "media-badge media-badge-warning img-circle" },
 	          _react2.default.createElement(
 	            "div",
-	            { className: "tile tile-layout" },
+	            { className: "media-badge-container fa-inverse" },
 	            _react2.default.createElement(
-	              "div",
-	              { className: "col-xs-6" },
-	              _react2.default.createElement(
-	                "div",
-	                { className: "tile-content" },
-	                _react2.default.createElement(
-	                  "h2",
-	                  { className: "movie_name" },
-	                  details.Title,
-	                  " "
-	                )
-	              )
-	            ),
-	            _react2.default.createElement(
-	              "div",
-	              { className: "col-xs-4 text-right" },
-	              _react2.default.createElement(
-	                "div",
-	                { className: "tile-content" },
-	                _react2.default.createElement(
-	                  "h2",
-	                  { className: "label_left text-muted" },
-	                  "Rated"
-	                )
-	              )
-	            ),
-	            _react2.default.createElement(
-	              "div",
-	              { className: "col-xs-2" },
-	              _react2.default.createElement(
-	                "div",
-	                { className: "tile-content text-center" },
-	                _react2.default.createElement(
-	                  "div",
-	                  { className: "media-badge-xs  img-circle media-badge-success" },
-	                  _react2.default.createElement(
-	                    "div",
-	                    { className: "media-badge-container" },
-	                    _react2.default.createElement(
-	                      "h2",
-	                      { className: "movie_rated" },
-	                      details.Rated
-	                    )
-	                  )
-	                )
-	              )
+	              "h2",
+	              null,
+	              details.Metascore,
+	              "%"
 	            )
 	          )
 	        ),
 	        _react2.default.createElement(
 	          "div",
-	          { className: "tile-grid" },
+	          { className: "stretch" },
 	          _react2.default.createElement(
-	            "div",
-	            { className: "tile tile-layout", style: { paddingTop: 10 + 'px' } },
-	            _react2.default.createElement(
-	              "div",
-	              { className: "col-xs-2" },
-	              _react2.default.createElement("i", { className: "text-muted fa fa-trophy-o fa-3x" })
-	            )
+	            "h4",
+	            { className: "line-tighter" },
+	            details.Title
 	          ),
 	          _react2.default.createElement(
-	            "div",
-	            { className: "col-xs-6" },
-	            _react2.default.createElement(
-	              "div",
-	              { className: "tile-content" },
-	              _react2.default.createElement(
-	                "h3",
-	                null,
-	                "Genre"
-	              )
-	            )
+	            "h5",
+	            { className: "line-tighter text-muted" },
+	            details.Genre,
+	            " "
+	          )
+	        )
+	      ),
+	      _react2.default.createElement(
+	        "ul",
+	        { className: "list-group" },
+	        _react2.default.createElement(
+	          "li",
+	          { className: "list-group-item" },
+	          _react2.default.createElement(
+	            "h4",
+	            { className: "line-tighter" },
+	            details.Director
 	          ),
 	          _react2.default.createElement(
-	            "div",
-	            { className: "col-xs-4 text-right" },
-	            _react2.default.createElement(
-	              "div",
-	              { className: "tile-content" },
-	              _react2.default.createElement(
-	                "h3",
-	                { className: "text-info" },
-	                " ",
-	                details.Genre
-	              )
-	            )
+	            "h5",
+	            { className: "line-tighter text-muted" },
+	            "Director"
+	          )
+	        ),
+	        _react2.default.createElement(
+	          "li",
+	          { className: "list-group-item" },
+	          _react2.default.createElement(
+	            "h4",
+	            { className: "line-tighter" },
+	            details.Writer
 	          ),
 	          _react2.default.createElement(
-	            "ul",
-	            { className: "list-group list-group-with-indicators list-group-border-bottom" },
-	            _react2.default.createElement(
-	              "li",
-	              { className: "list-group-item collapsible-item" },
-	              _react2.default.createElement(
-	                "div",
-	                { className: "media-row padding-2-left collapsed", "aria-expanded": "false" },
-	                _react2.default.createElement(
-	                  "h4",
-	                  null,
-	                  _react2.default.createElement(
-	                    "strong",
-	                    null,
-	                    "Movie Synopsis"
-	                  )
-	                )
-	              ),
-	              _react2.default.createElement(
-	                "ul",
-	                { className: "list-group collapse", "aria-expanded": "false" },
-	                _react2.default.createElement(
-	                  "li",
-	                  { className: "list-group-item list-group-item-muted collapsible-item  no-indicator" },
-	                  _react2.default.createElement(
-	                    "p",
-	                    { "data-toggle": "collapse", "aria-expanded": "false" },
-	                    details.Plot
-	                  )
-	                )
-	              )
-	            ),
-	            _react2.default.createElement(
-	              "li",
-	              { className: "list-group-item collapsible-item" },
-	              _react2.default.createElement(
-	                "div",
-	                { className: "media-row padding-2-left collapsed", "data-toggle": "collapse", "aria-expanded": "false" },
-	                _react2.default.createElement(
-	                  "h4",
-	                  null,
-	                  _react2.default.createElement(
-	                    "strong",
-	                    null,
-	                    "Movie Poster"
-	                  )
-	                )
-	              ),
-	              _react2.default.createElement(
-	                "ul",
-	                { id: "poster", className: "list-group collapse", "aria-expanded": "false", style: { height: 0 + 'px' } },
-	                _react2.default.createElement(
-	                  "li",
-	                  { className: "list-group-item list-group-item-muted collapsible-item no-indicator" },
-	                  _react2.default.createElement("img", { src: "{ details.Poster }", alt: "", style: { width: 100 + '%' } })
-	                )
-	              )
-	            )
+	            "h5",
+	            { className: "line-tighter text-muted" },
+	            "Writer"
+	          )
+	        ),
+	        _react2.default.createElement(
+	          "li",
+	          { className: "list-group-item" },
+	          _react2.default.createElement(
+	            "h4",
+	            { className: "line-tighter" },
+	            details.Actors
+	          ),
+	          _react2.default.createElement(
+	            "h5",
+	            { className: "line-tighter text-muted" },
+	            "Actors"
 	          )
 	        )
 	      )
@@ -37632,7 +37551,7 @@
 	});
 	var initialState = {
 	  movies: [],
-	  selected_movie: ''
+	  selected_movie: 'Arrival'
 	};
 	
 	var movieListReducer = function movieListReducer() {
