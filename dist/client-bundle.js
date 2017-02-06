@@ -37345,87 +37345,122 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	var NoInfo = function NoInfo() {
+	  return _react2.default.createElement(
+	    "div",
+	    { className: "notice", "data-reactid": ".0" },
+	    _react2.default.createElement(
+	      "div",
+	      { className: "media-badge media-badge-lg media-badge-info-inverse img-circle", "data-reactid": ".0.0" },
+	      _react2.default.createElement(
+	        "span",
+	        { className: "media-badge-container", "data-reactid": ".0.0.0" },
+	        _react2.default.createElement("i", { className: "fa fa-4x fa-flag", "data-reactid": ".0.0.0.0" })
+	      )
+	    ),
+	    _react2.default.createElement(
+	      "h2",
+	      { className: "text-info", "data-reactid": ".0.1" },
+	      _react2.default.createElement(
+	        "strong",
+	        { "data-reactid": ".0.1.0" },
+	        "No Movie Selected"
+	      )
+	    ),
+	    _react2.default.createElement(
+	      "p",
+	      { "data-reactid": ".0.2" },
+	      "Please select a movie to view its details "
+	    )
+	  );
+	};
+	
 	var MovieDetail = function MovieDetail(_ref) {
 	  var details = _ref.details;
 	  return _react2.default.createElement(
 	    "div",
 	    null,
-	    _react2.default.createElement(
+	    !details.Title && _react2.default.createElement(NoInfo, null),
+	    details.Title && _react2.default.createElement(
 	      "div",
-	      { className: "media-row" },
+	      null,
 	      _react2.default.createElement(
 	        "div",
-	        { className: "media-badge media-badge-warning img-circle" },
+	        { className: "media-row" },
 	        _react2.default.createElement(
 	          "div",
-	          { className: "media-badge-container fa-inverse" },
+	          { className: "media-badge media-badge-warning img-circle" },
 	          _react2.default.createElement(
-	            "h2",
-	            null,
-	            details.Metascore,
-	            "%"
+	            "div",
+	            { className: "media-badge-container fa-inverse" },
+	            _react2.default.createElement(
+	              "h2",
+	              null,
+	              details.Metascore,
+	              "%"
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          "div",
+	          { className: "stretch" },
+	          _react2.default.createElement(
+	            "h4",
+	            { className: "line-tighter" },
+	            details.Title
+	          ),
+	          _react2.default.createElement(
+	            "h5",
+	            { className: "line-tighter text-muted" },
+	            details.Genre,
+	            " "
 	          )
 	        )
 	      ),
 	      _react2.default.createElement(
-	        "div",
-	        { className: "stretch" },
+	        "ul",
+	        { className: "list-group" },
 	        _react2.default.createElement(
-	          "h4",
-	          { className: "line-tighter" },
-	          details.Title
+	          "li",
+	          { className: "list-group-item" },
+	          _react2.default.createElement(
+	            "h4",
+	            { className: "line-tighter" },
+	            details.Director
+	          ),
+	          _react2.default.createElement(
+	            "h5",
+	            { className: "line-tighter text-muted" },
+	            "Director"
+	          )
 	        ),
 	        _react2.default.createElement(
-	          "h5",
-	          { className: "line-tighter text-muted" },
-	          details.Genre,
-	          " "
-	        )
-	      )
-	    ),
-	    _react2.default.createElement(
-	      "ul",
-	      { className: "list-group" },
-	      _react2.default.createElement(
-	        "li",
-	        { className: "list-group-item" },
-	        _react2.default.createElement(
-	          "h4",
-	          { className: "line-tighter" },
-	          details.Director
+	          "li",
+	          { className: "list-group-item" },
+	          _react2.default.createElement(
+	            "h4",
+	            { className: "line-tighter" },
+	            details.Writer
+	          ),
+	          _react2.default.createElement(
+	            "h5",
+	            { className: "line-tighter text-muted" },
+	            "Writer"
+	          )
 	        ),
 	        _react2.default.createElement(
-	          "h5",
-	          { className: "line-tighter text-muted" },
-	          "Director"
-	        )
-	      ),
-	      _react2.default.createElement(
-	        "li",
-	        { className: "list-group-item" },
-	        _react2.default.createElement(
-	          "h4",
-	          { className: "line-tighter" },
-	          details.Writer
-	        ),
-	        _react2.default.createElement(
-	          "h5",
-	          { className: "line-tighter text-muted" },
-	          "Writer"
-	        )
-	      ),
-	      _react2.default.createElement(
-	        "li",
-	        { className: "list-group-item" },
-	        _react2.default.createElement(
-	          "h4",
-	          { className: "line-tighter" },
-	          details.Actors
-	        ),
-	        _react2.default.createElement(
-	          "h5",
-	          { className: "line-tighter text-muted" },
-	          "Actors"
+	          "li",
+	          { className: "list-group-item" },
+	          _react2.default.createElement(
+	            "h4",
+	            { className: "line-tighter" },
+	            details.Actors
+	          ),
+	          _react2.default.createElement(
+	            "h5",
+	            { className: "line-tighter text-muted" },
+	            "Actors"
+	          )
 	        )
 	      )
 	    )
@@ -37435,11 +37470,10 @@
 	MovieDetail.propTypes = {
 	  details: _react.PropTypes.shape({
 	    Title: _react2.default.PropTypes.string,
-	    Plot: _react2.default.PropTypes.string,
-	    Genre: _react2.default.PropTypes.string,
 	    Actors: _react2.default.PropTypes.string,
-	    Metascore: _react2.default.PropTypes.integer,
-	    Year: _react2.default.PropTypes.integer
+	    Director: _react2.default.PropTypes.string,
+	    Writer: _react2.default.PropTypes.string,
+	    Metascore: _react2.default.PropTypes.integer
 	  }).isRequired
 	};
 	
@@ -37549,7 +37583,7 @@
 	var _DetailsActions = __webpack_require__(566);
 	
 	var initialState = {
-	  details: { title: '', director: '' }
+	  details: { Title: '' }
 	};
 	
 	var movieDetailsReducer = function movieDetailsReducer() {
