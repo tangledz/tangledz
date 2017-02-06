@@ -37583,7 +37583,7 @@
 	var _DetailsActions = __webpack_require__(566);
 	
 	var initialState = {
-	  details: { Title: '' }
+	  details: { title: '', director: '' }
 	};
 	
 	var movieDetailsReducer = function movieDetailsReducer() {
