@@ -7,7 +7,7 @@ const mapStateToProps = state => ({ movies: state.list.movies, selected_movie: s
 const mapDispatchToProps = (dispatch) => {
   return {
     onMovieClick: (id) => {
-      Livestax.store.set("selection", movie);
+      Livestax.store.set("selection", id);
       dispatch(selectMovie(id))
     }
   }

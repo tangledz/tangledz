@@ -62,11 +62,13 @@
 	
 	var _ListActions = __webpack_require__(565);
 	
-	var _MovieListContainer = __webpack_require__(566);
+	var _DetailsActions = __webpack_require__(566);
+	
+	var _MovieListContainer = __webpack_require__(569);
 	
 	var _MovieListContainer2 = _interopRequireDefault(_MovieListContainer);
 	
-	var _MovieDetailsContainer = __webpack_require__(568);
+	var _MovieDetailsContainer = __webpack_require__(571);
 	
 	var _MovieDetailsContainer2 = _interopRequireDefault(_MovieDetailsContainer);
 	
@@ -94,7 +96,10 @@
 	      }),
 	      _react2.default.createElement(_reactRouter.Route, {
 	        path: '/view/:id',
-	        component: _MovieDetailsContainer2.default
+	        component: _MovieDetailsContainer2.default,
+	        onEnter: function onEnter() {
+	          return store.dispatch((0, _DetailsActions.connectLiveStax)());
+	        }
 	      })
 	    )
 	  );
@@ -36674,191 +36679,11 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	
-	var _reactRedux = __webpack_require__(474);
-	
-	var _MovieList = __webpack_require__(567);
-	
-	var _MovieList2 = _interopRequireDefault(_MovieList);
-	
-	var _ListActions = __webpack_require__(565);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var mapStateToProps = function mapStateToProps(state) {
-	  return { movies: state.list.movies, selected_movie: state.list.selected_movie };
-	};
-	
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	  return {
-	    onMovieClick: function onMovieClick(id) {
-	      Livestax.store.set("selection", movie);
-	      dispatch((0, _ListActions.selectMovie)(id));
-	    }
-	  };
-	};
-	
-	var MovieListContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_MovieList2.default);
-	
-	exports.default = MovieListContainer;
-
-/***/ },
-/* 567 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(298);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var MovieList = function MovieList(_ref) {
-	  var movies = _ref.movies,
-	      selected_movie = _ref.selected_movie,
-	      onMovieClick = _ref.onMovieClick;
-	  return _react2.default.createElement(
-	    "div",
-	    { className: "list-group" },
-	    _react2.default.createElement(
-	      "ul",
-	      { className: "list-group" },
-	      _react2.default.createElement(
-	        "li",
-	        { className: "list-group-item list-group-item-muted unselectable text-muted-dark" },
-	        _react2.default.createElement(
-	          "strong",
-	          null,
-	          "Nominations"
-	        )
-	      ),
-	      movies.map(function (movie) {
-	        return _react2.default.createElement(
-	          "li",
-	          { className: "list-group-item list-group-item-condensed " + (selected_movie == movie && 'active'), key: movie, onClick: function onClick() {
-	              return onMovieClick(movie);
-	            } },
-	          movie
-	        );
-	      })
-	    )
-	  );
-	};
-	
-	MovieList.propTypes = {
-	  movies: _react.PropTypes.arrayOf(_react2.default.PropTypes.string).isRequired,
-	  selected_movie: _react2.default.PropTypes.string
-	};
-	
-	exports.default = MovieList;
-
-/***/ },
-/* 568 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(298);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(474);
-	
-	var _DetailsActions = __webpack_require__(569);
-	
-	var _MovieDetails = __webpack_require__(572);
-	
-	var _MovieDetails2 = _interopRequireDefault(_MovieDetails);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var mapStateToProps = function mapStateToProps(state) {
-	  return { details: state.details.details };
-	};
-	
-	var MovieDetailsContainer = function (_React$Component) {
-	  _inherits(MovieDetailsContainer, _React$Component);
-	
-	  function MovieDetailsContainer() {
-	    _classCallCheck(this, MovieDetailsContainer);
-	
-	    return _possibleConstructorReturn(this, (MovieDetailsContainer.__proto__ || Object.getPrototypeOf(MovieDetailsContainer)).apply(this, arguments));
-	  }
-	
-	  _createClass(MovieDetailsContainer, [{
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {
-	      this.props.fetchDetails(this.props.params.id);
-	    }
-	  }, {
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      Livestax.store.watch("best-picture-nominations.selection", function (movie) {
-	        if (window.location['hash'] != '#/view/' + movie) {
-	          window.location = '#/view/' + movie;
-	          window.location.reload();
-	        }
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(_MovieDetails2.default, { details: this.props.details });
-	    }
-	  }]);
-	
-	  return MovieDetailsContainer;
-	}(_react2.default.Component);
-	
-	MovieDetailsContainer.propTypes = {
-	  params: _react.PropTypes.shape({
-	    id: _react2.default.PropTypes.string
-	  }).isRequired,
-	  fetchDetails: _react.PropTypes.func.isRequired,
-	  details: _react.PropTypes.shape({
-	    Title: _react2.default.PropTypes.string,
-	    Plot: _react2.default.PropTypes.string,
-	    Genre: _react2.default.PropTypes.string,
-	    Actors: _react2.default.PropTypes.string,
-	    Metascore: _react2.default.PropTypes.integer,
-	    Year: _react2.default.PropTypes.integer
-	  }).isRequired
-	};
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, {
-	  fetchDetails: _DetailsActions.fetchDetails
-	})(MovieDetailsContainer);
-
-/***/ },
-/* 569 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
 	exports.receiveDetails = exports.requestDetails = exports.RECEIVE_DETAILS = exports.REQUEST_DETAILS = undefined;
 	exports.fetchDetails = fetchDetails;
+	exports.connectLiveStax = connectLiveStax;
 	
-	var _isomorphicFetch = __webpack_require__(570);
+	var _isomorphicFetch = __webpack_require__(567);
 	
 	var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 	
@@ -36893,21 +36718,29 @@
 	    });
 	  };
 	}
+	
+	function connectLiveStax() {
+	  return function (dispatch) {
+	    Livestax.store.watch("best-picture-nominations.selection", function (movie) {
+	      dispatch(fetchDetails(movie));
+	    });
+	  };
+	}
 
 /***/ },
-/* 570 */
+/* 567 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// the whatwg-fetch polyfill installs the fetch() function
 	// on the global object (window or self)
 	//
 	// Return that as the export for use in Webpack, Browserify etc.
-	__webpack_require__(571);
+	__webpack_require__(568);
 	module.exports = self.fetch.bind(self);
 
 
 /***/ },
-/* 571 */
+/* 568 */
 /***/ function(module, exports) {
 
 	(function(self) {
@@ -37371,6 +37204,132 @@
 
 
 /***/ },
+/* 569 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(474);
+	
+	var _MovieList = __webpack_require__(570);
+	
+	var _MovieList2 = _interopRequireDefault(_MovieList);
+	
+	var _ListActions = __webpack_require__(565);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	  return { movies: state.list.movies, selected_movie: state.list.selected_movie };
+	};
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    onMovieClick: function onMovieClick(id) {
+	      Livestax.store.set("selection", id);
+	      dispatch((0, _ListActions.selectMovie)(id));
+	    }
+	  };
+	};
+	
+	var MovieListContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_MovieList2.default);
+	
+	exports.default = MovieListContainer;
+
+/***/ },
+/* 570 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(298);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var MovieList = function MovieList(_ref) {
+	  var movies = _ref.movies,
+	      selected_movie = _ref.selected_movie,
+	      onMovieClick = _ref.onMovieClick;
+	  return _react2.default.createElement(
+	    "div",
+	    { className: "list-group" },
+	    _react2.default.createElement(
+	      "ul",
+	      { className: "list-group" },
+	      _react2.default.createElement(
+	        "li",
+	        { className: "list-group-item list-group-item-muted unselectable text-muted-dark" },
+	        _react2.default.createElement(
+	          "strong",
+	          null,
+	          "Nominations"
+	        )
+	      ),
+	      movies.map(function (movie) {
+	        return _react2.default.createElement(
+	          "li",
+	          { className: "list-group-item list-group-item-condensed " + (selected_movie == movie && 'active'), key: movie, onClick: function onClick() {
+	              return onMovieClick(movie);
+	            } },
+	          movie
+	        );
+	      })
+	    )
+	  );
+	};
+	
+	MovieList.propTypes = {
+	  movies: _react.PropTypes.arrayOf(_react2.default.PropTypes.string).isRequired,
+	  selected_movie: _react2.default.PropTypes.string
+	};
+	
+	exports.default = MovieList;
+
+/***/ },
+/* 571 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(298);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(474);
+	
+	var _DetailsActions = __webpack_require__(566);
+	
+	var _MovieDetails = __webpack_require__(572);
+	
+	var _MovieDetails2 = _interopRequireDefault(_MovieDetails);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	  return { details: state.details.details };
+	};
+	
+	var MovieDetailsContainer = (0, _reactRedux.connect)(mapStateToProps, {
+	  fetchDetails: _DetailsActions.fetchDetails
+	})(_MovieDetails2.default);
+	
+	exports.default = MovieDetailsContainer;
+
+/***/ },
 /* 572 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -37587,7 +37546,7 @@
 	  value: true
 	});
 	
-	var _DetailsActions = __webpack_require__(569);
+	var _DetailsActions = __webpack_require__(566);
 	
 	var initialState = {
 	  details: { title: '', director: '' }

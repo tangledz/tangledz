@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, hashHistory } from 'react-router';
 import { viewMovies } from './actions/ListActions';
+import { connectLiveStax } from './actions/DetailsActions';
 
 import MovieListContainer from './containers/MovieListContainer';
 import MovieDetailsContainer from './containers/MovieDetailsContainer';
@@ -25,6 +26,7 @@ const App = () => (
       <Route
         path="/view/:id"
         component={MovieDetailsContainer}
+        onEnter={() => store.dispatch(connectLiveStax())}
       />
     </Router>
   </Provider>

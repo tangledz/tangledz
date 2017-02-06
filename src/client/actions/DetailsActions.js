@@ -23,3 +23,11 @@ export function fetchDetails(id) {
       .then(json => dispatch(receiveDetails(id, json)));
   };
 }
+
+export function connectLiveStax() {
+  return (dispatch) => {
+    Livestax.store.watch("best-picture-nominations.selection", function(movie) {
+      dispatch(fetchDetails(movie));
+    });
+  }
+}
