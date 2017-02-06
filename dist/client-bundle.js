@@ -37428,23 +37428,15 @@
 																	{ className: "tile-content text-center" },
 																	_react2.default.createElement(
 																			"div",
-																			{ className: "media-badge media-badge-primary img-circle" },
+																			{ className: "media-badge media-badge-info img-circle" },
 																			_react2.default.createElement(
-																					"span",
-																					{ className: "media-badge-container" },
+																					"div",
+																					{ className: "media-badge-container fa-inverse" },
 																					_react2.default.createElement(
-																							"h3",
-																							{ className: "lead" },
-																							_react2.default.createElement("i", { className: "fa fa-trophy fa-inverse" })
-																					)
-																			),
-																			_react2.default.createElement(
-																					"span",
-																					{ className: "badge" },
-																					_react2.default.createElement(
-																							"h1",
+																							"h2",
 																							null,
-																							details.Metascore
+																							details.Metascore,
+																							"%"
 																					)
 																			)
 																	)

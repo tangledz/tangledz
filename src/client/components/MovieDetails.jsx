@@ -34,14 +34,11 @@ const MovieDetail = ({ details }) => (
 	    </div>
 	    <div className="col-xs-2"> 
 	      <div className="tile-content text-center">
-		<div className="media-badge media-badge-primary img-circle">
-		  <span className="media-badge-container">
-		    <h3 className="lead"><i className="fa fa-trophy fa-inverse"></i></h3>
-		  </span>
-		  <span className="badge">
-		    <h1>{ details.Metascore }</h1>
-		  </span>
-		</div>
+                <div className="media-badge media-badge-info img-circle">
+                  <div className="media-badge-container fa-inverse">
+                    <h2>{ details.Metascore }%</h2>
+                  </div>
+                </div>
 	      </div>
 	    </div>
 	  </div>
