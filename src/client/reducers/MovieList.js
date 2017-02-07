@@ -1,6 +1,6 @@
 const initialState = {
   movies: [],
-  selected_movie: 'Arrival',
+  selected_movie: '',
 };
 
 const movieListReducer = (state = initialState, action) => {
