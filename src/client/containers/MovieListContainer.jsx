@@ -2,15 +2,18 @@ import { connect } from 'react-redux';
 import MovieList from '../components/MovieList';
 import { selectMovie } from '../actions/ListActions';
 
-const mapStateToProps = state => ({ movies: state.list.movies, selected_movie: state.list.selected_movie });
+const mapStateToProps = state => ({
+  movies: state.list.movies,
+  selectedMovie: state.list.selectedMovie,
+});
 
-const mapDispatchToProps = (dispatch) => {
+function mapDispatchToProps(dispatch) {
   return {
     onMovieClick: (id) => {
-      Livestax.store.set("selection", id);
-      dispatch(selectMovie(id))
-    }
-  }
+      Livestax.store.set('selection', id);
+      dispatch(selectMovie(id));
+    },
+  };
 }
 
 const MovieListContainer = connect(

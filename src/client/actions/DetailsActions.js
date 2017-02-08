@@ -26,8 +26,6 @@ export function fetchDetails(id) {
 
 export function connectLiveStax() {
   return (dispatch) => {
-    Livestax.store.watch("best-picture-nominations.selection", function(movie) {
-      dispatch(fetchDetails(movie));
-    });
-  }
+    Livestax.store.watch('best-picture-nominations.selection', (movie => dispatch(fetchDetails(movie))));
+  };
 }

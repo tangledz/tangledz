@@ -1,13 +1,18 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+
 import React, { PropTypes } from 'react';
 
-const MovieList = ({ movies, selected_movie, onMovieClick }) => (
+const MovieList = ({ movies, selectedMovie, onMovieClick }) => (
   <div className="list-group">
     <ul className="list-group">
       <li className="list-group-item list-group-item-muted unselectable text-muted-dark">
         <strong>Nominations</strong>
       </li>
       {movies.map(movie => (
-        <li className={"list-group-item list-group-item-condensed " + ((selected_movie == movie ) && 'active')} key={movie} onClick={()=> onMovieClick(movie)}>
+        <li
+          className={`list-group-item list-group-item-condensed ${(selectedMovie === movie) && 'active'}`}
+          key={movie} onClick={() => onMovieClick(movie)}
+        >
           {movie}
         </li>
       ))}
@@ -16,8 +21,9 @@ const MovieList = ({ movies, selected_movie, onMovieClick }) => (
 );
 
 MovieList.propTypes = {
-  movies: PropTypes.arrayOf(React.PropTypes.string).isRequired,
-  selected_movie: React.PropTypes.string,
+  movies: PropTypes.arrayOf(PropTypes.string).isRequired,
+  selectedMovie: PropTypes.string.isRequired,
+  onMovieClick: PropTypes.func.isRequired,
 };
 
 export default MovieList;

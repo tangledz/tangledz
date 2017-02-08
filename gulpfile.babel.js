@@ -42,7 +42,7 @@ gulp.task('build', ['lint', 'clean'], () =>
     .pipe(gulp.dest(paths.libDir)),
 );
 
-gulp.task('main', ['clean'], () =>
+gulp.task('main', ['lint', 'clean'], () =>
   gulp.src(paths.clientEntryPoint)
     .pipe(webpack(webpackConfig))
     .pipe(gulp.dest(paths.distDir)),
@@ -60,4 +60,3 @@ gulp.task('connect', () =>
 );
 
 gulp.task('default', ['watch', 'main', 'connect']);
-

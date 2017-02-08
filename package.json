@@ -21,6 +21,11 @@
     "plugins": [
       "import"
     ],
+    "rules": {
+      "linebreak-style": "off",
+      "no-undef": "off",
+      "no-static-element-interactions": "off"
+    },
     "env": {
       "browser": true
     }

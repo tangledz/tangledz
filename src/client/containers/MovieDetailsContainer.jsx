@@ -1,4 +1,3 @@
-import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchDetails } from '../actions/DetailsActions';
 import MovieDetails from '../components/MovieDetails';

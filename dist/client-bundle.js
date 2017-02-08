@@ -72,7 +72,7 @@
 	
 	var _MovieDetailsContainer2 = _interopRequireDefault(_MovieDetailsContainer);
 	
-	var _configureStore = __webpack_require__(573);
+	var _configureStore = __webpack_require__(583);
 	
 	var _configureStore2 = _interopRequireDefault(_configureStore);
 	
@@ -36656,7 +36656,7 @@
 	  return {
 	    type: VIEW_MOVIES,
 	    movies: ['Arrival', 'Fences', 'Hacksaw Ridge', 'Hell or High Water', 'Hidden Figures', 'La La Land', 'Lion', 'Manchester by the Sea', 'Moonlight'],
-	    selected_movie: 'Arrival'
+	    selectedMovie: ''
 	  };
 	};
 	
@@ -36665,7 +36665,7 @@
 	var selectMovie = exports.selectMovie = function selectMovie(id) {
 	  return {
 	    type: SELECT_MOVIE,
-	    selected_movie: id,
+	    selectedMovie: id,
 	    id: id
 	  };
 	};
@@ -36721,8 +36721,8 @@
 	
 	function connectLiveStax() {
 	  return function (dispatch) {
-	    Livestax.store.watch("best-picture-nominations.selection", function (movie) {
-	      dispatch(fetchDetails(movie));
+	    Livestax.store.watch('best-picture-nominations.selection', function (movie) {
+	      return dispatch(fetchDetails(movie));
 	    });
 	  };
 	}
@@ -37224,17 +37224,20 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var mapStateToProps = function mapStateToProps(state) {
-	  return { movies: state.list.movies, selected_movie: state.list.selected_movie };
+	  return {
+	    movies: state.list.movies,
+	    selectedMovie: state.list.selectedMovie
+	  };
 	};
 	
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	function mapDispatchToProps(dispatch) {
 	  return {
 	    onMovieClick: function onMovieClick(id) {
-	      Livestax.store.set("selection", id);
+	      Livestax.store.set('selection', id);
 	      dispatch((0, _ListActions.selectMovie)(id));
 	    }
 	  };
-	};
+	}
 	
 	var MovieListContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_MovieList2.default);
 	
@@ -37258,7 +37261,7 @@
 	
 	var MovieList = function MovieList(_ref) {
 	  var movies = _ref.movies,
-	      selected_movie = _ref.selected_movie,
+	      selectedMovie = _ref.selectedMovie,
 	      onMovieClick = _ref.onMovieClick;
 	  return _react2.default.createElement(
 	    "div",
@@ -37278,19 +37281,23 @@
 	      movies.map(function (movie) {
 	        return _react2.default.createElement(
 	          "li",
-	          { className: "list-group-item list-group-item-condensed " + (selected_movie == movie && 'active'), key: movie, onClick: function onClick() {
+	          {
+	            className: "list-group-item list-group-item-condensed " + (selectedMovie === movie && 'active'),
+	            key: movie, onClick: function onClick() {
 	              return onMovieClick(movie);
-	            } },
+	            }
+	          },
 	          movie
 	        );
 	      })
 	    )
 	  );
-	};
+	}; /* eslint-disable jsx-a11y/no-static-element-interactions */
 	
 	MovieList.propTypes = {
-	  movies: _react.PropTypes.arrayOf(_react2.default.PropTypes.string).isRequired,
-	  selected_movie: _react2.default.PropTypes.string
+	  movies: _react.PropTypes.arrayOf(_react.PropTypes.string).isRequired,
+	  selectedMovie: _react.PropTypes.string.isRequired,
+	  onMovieClick: _react.PropTypes.func.isRequired
 	};
 	
 	exports.default = MovieList;
@@ -37304,10 +37311,6 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	
-	var _react = __webpack_require__(298);
-	
-	var _react2 = _interopRequireDefault(_react);
 	
 	var _reactRedux = __webpack_require__(474);
 	
@@ -37333,7 +37336,7 @@
 /* 572 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -37343,152 +37346,99 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _MovieAwardList = __webpack_require__(573);
+	
+	var _MovieAwardList2 = _interopRequireDefault(_MovieAwardList);
+	
+	var _MovieGenreList = __webpack_require__(575);
+	
+	var _MovieGenreList2 = _interopRequireDefault(_MovieGenreList);
+	
+	var _Rating = __webpack_require__(577);
+	
+	var _Rating2 = _interopRequireDefault(_Rating);
+	
+	var _Synopsis = __webpack_require__(578);
+	
+	var _Synopsis2 = _interopRequireDefault(_Synopsis);
+	
+	var _Poster = __webpack_require__(579);
+	
+	var _Poster2 = _interopRequireDefault(_Poster);
+	
+	var _CreditsList = __webpack_require__(580);
+	
+	var _CreditsList2 = _interopRequireDefault(_CreditsList);
+	
+	var _NoSelection = __webpack_require__(582);
+	
+	var _NoSelection2 = _interopRequireDefault(_NoSelection);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var NoInfo = function NoInfo() {
-	  return _react2.default.createElement(
-	    "div",
-	    { className: "notice", "data-reactid": ".0" },
-	    _react2.default.createElement(
-	      "div",
-	      { className: "media-badge media-badge-lg media-badge-info-inverse img-circle", "data-reactid": ".0.0" },
-	      _react2.default.createElement(
-	        "span",
-	        { className: "media-badge-container", "data-reactid": ".0.0.0" },
-	        _react2.default.createElement("i", { className: "fa fa-4x fa-flag", "data-reactid": ".0.0.0.0" })
-	      )
-	    ),
-	    _react2.default.createElement(
-	      "h2",
-	      { className: "text-info", "data-reactid": ".0.1" },
-	      _react2.default.createElement(
-	        "strong",
-	        { "data-reactid": ".0.1.0" },
-	        "No Movie Selected"
-	      )
-	    ),
-	    _react2.default.createElement(
-	      "p",
-	      { "data-reactid": ".0.2" },
-	      "Please select a movie to view its details "
-	    )
-	  );
-	};
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 	
-	var MovieDetail = function MovieDetail(_ref) {
-	  var details = _ref.details;
+	function parsedAwards(text) {
+	  var _ref;
+	
+	  // extracts number of awards won
+	  var winsNum = text.split('.')[1].replace(/^\D+|\D.*$/g, '');
+	
+	  // extracts number of nominations
+	  var nominationsWin = text.split('& ')[1].split(' ')[0];
+	
+	  // extracts number of 'big' awards won/nominated
+	  var bigAwardNum = text.replace(/^\D+|\D.*$/g, '');
+	
+	  // extracts whether the 'big' award was a win or nomination
+	  var bigAwardStatus = text.split(' ')[0].toLowerCase();
+	
+	  // extracts whether the 'big' award was the Oscars or Golden Globes
+	  var bigAwardType = text.split('.')[1].includes('Oscars') ? 'oscars' : 'goldenGlobes';
+	
+	  return _ref = {}, _defineProperty(_ref, bigAwardType, _defineProperty({}, bigAwardStatus, parseInt(bigAwardNum, 10))), _defineProperty(_ref, 'awards', { won: parseInt(winsNum, 10), nominated: parseInt(nominationsWin, 10) }), _ref;
+	}
+	
+	var MovieDetail = function MovieDetail(_ref2) {
+	  var details = _ref2.details;
 	  return _react2.default.createElement(
-	    "div",
-	    null,
-	    !details.Title && _react2.default.createElement(NoInfo, null),
+	    'div',
+	    { className: 'row' },
+	    !details.Title && _react2.default.createElement(_NoSelection2.default, null),
 	    details.Title && _react2.default.createElement(
-	      "div",
-	      null,
+	      'div',
+	      { className: 'row' },
 	      _react2.default.createElement(
-	        "div",
-	        { className: "media-row" },
+	        'div',
+	        { className: 'tile-grid' },
 	        _react2.default.createElement(
-	          "div",
-	          { className: "row" },
+	          'div',
+	          { className: 'tile tile-layout' },
 	          _react2.default.createElement(
-	            "div",
-	            { className: "tile tile-layout" },
-	            _react2.default.createElement(
-	              "div",
-	              { className: "col-xs-6" },
-	              _react2.default.createElement(
-	                "div",
-	                { className: "tile-content" },
-	                _react2.default.createElement(
-	                  "h2",
-	                  { className: "movie_name" },
-	                  details.Title,
-	                  " "
-	                )
-	              )
-	            ),
-	            _react2.default.createElement(
-	              "div",
-	              { className: "col-xs-3 text-left" },
-	              _react2.default.createElement(
-	                "div",
-	                { className: "tile-content" },
-	                _react2.default.createElement(
-	                  "h2",
-	                  { className: "label_left text-muted" },
-	                  "Rating"
-	                )
-	              )
-	            ),
-	            _react2.default.createElement(
-	              "div",
-	              { className: "col-xs-3" },
-	              _react2.default.createElement(
-	                "div",
-	                { className: "tile-content text-center" },
-	                _react2.default.createElement(
-	                  "div",
-	                  { className: "media-badge media-badge-info img-circle" },
-	                  _react2.default.createElement(
-	                    "div",
-	                    { className: "media-badge-container fa-inverse" },
-	                    _react2.default.createElement(
-	                      "h2",
-	                      null,
-	                      details.Metascore,
-	                      "%"
-	                    )
-	                  )
-	                )
-	              )
-	            )
+	            'h2',
+	            null,
+	            details.Title
 	          )
 	        )
 	      ),
+	      _react2.default.createElement(_MovieAwardList2.default, { awards: parsedAwards(details.Awards) }),
+	      _react2.default.createElement(_MovieGenreList2.default, { genres: details.Genre }),
 	      _react2.default.createElement(
-	        "ul",
-	        { className: "list-group" },
+	        'ul',
+	        { className: 'list-group list-group-with-indicators list-group-border-bottom' },
+	        _react2.default.createElement(_CreditsList2.default, { credits: details.Director, label: 'Director' }),
+	        _react2.default.createElement(_CreditsList2.default, { credits: details.Writer, label: 'Writers' }),
+	        _react2.default.createElement(_CreditsList2.default, { credits: details.Actors, label: 'Actors' })
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'tile-grid' },
+	        _react2.default.createElement(_Rating2.default, { rated: details.Rated }),
 	        _react2.default.createElement(
-	          "li",
-	          { className: "list-group-item" },
-	          _react2.default.createElement(
-	            "h4",
-	            { className: "line-tighter" },
-	            details.Director
-	          ),
-	          _react2.default.createElement(
-	            "h5",
-	            { className: "line-tighter text-muted" },
-	            "Director"
-	          )
-	        ),
-	        _react2.default.createElement(
-	          "li",
-	          { className: "list-group-item" },
-	          _react2.default.createElement(
-	            "h4",
-	            { className: "line-tighter" },
-	            details.Writer
-	          ),
-	          _react2.default.createElement(
-	            "h5",
-	            { className: "line-tighter text-muted" },
-	            "Writer"
-	          )
-	        ),
-	        _react2.default.createElement(
-	          "li",
-	          { className: "list-group-item" },
-	          _react2.default.createElement(
-	            "h4",
-	            { className: "line-tighter" },
-	            details.Actors
-	          ),
-	          _react2.default.createElement(
-	            "h5",
-	            { className: "line-tighter text-muted" },
-	            "Actors"
-	          )
+	          'ul',
+	          { className: 'list-group list-group-with-indicators list-group-border-bottom' },
+	          _react2.default.createElement(_Synopsis2.default, { plot: details.Plot }),
+	          _react2.default.createElement(_Poster2.default, { poster: details.Poster })
 	        )
 	      )
 	    )
@@ -37497,11 +37447,15 @@
 	
 	MovieDetail.propTypes = {
 	  details: _react.PropTypes.shape({
-	    Title: _react2.default.PropTypes.string,
-	    Actors: _react2.default.PropTypes.string,
-	    Director: _react2.default.PropTypes.string,
-	    Writer: _react2.default.PropTypes.string,
-	    Metascore: _react2.default.PropTypes.integer
+	    Title: _react.PropTypes.string,
+	    Plot: _react.PropTypes.string,
+	    Genre: _react.PropTypes.string,
+	    Actors: _react.PropTypes.string,
+	    Director: _react.PropTypes.string,
+	    Awards: _react.PropTypes.string,
+	    Writer: _react.PropTypes.string,
+	    Rated: _react.PropTypes.string,
+	    Poster: _react.PropTypes.string
 	  }).isRequired
 	};
 	
@@ -37517,17 +37471,595 @@
 	  value: true
 	});
 	
-	var _reduxThunk = __webpack_require__(574);
+	var _react = __webpack_require__(298);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _MovieAwardItem = __webpack_require__(574);
+	
+	var _MovieAwardItem2 = _interopRequireDefault(_MovieAwardItem);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var AwardList = function AwardList(_ref) {
+	  var awards = _ref.awards;
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'tile-grid' },
+	    _react2.default.createElement(
+	      'p',
+	      { className: 'list-group-item list-group-item-muted unselectable text-muted-dark' },
+	      'Awards'
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'row row-equal-height' },
+	      awards.oscars && _react2.default.createElement(_MovieAwardItem2.default, { award: awards.oscars, name: 'Oscars' }),
+	      awards.goldenGlobes && _react2.default.createElement(_MovieAwardItem2.default, { award: awards.goldenGlobes, name: 'Golden Globes' }),
+	      awards.awards && _react2.default.createElement(_MovieAwardItem2.default, { award: awards.awards, name: 'Awards' })
+	    )
+	  );
+	};
+	
+	AwardList.propTypes = {
+	  awards: _react.PropTypes.shape({
+	    oscars: _react.PropTypes.shape({
+	      nominated: _react.PropTypes.number,
+	      won: _react.PropTypes.number
+	    }),
+	    goldenGlobes: _react.PropTypes.shape({
+	      nominated: _react.PropTypes.number,
+	      won: _react.PropTypes.number
+	    }),
+	    awards: _react.PropTypes.shape({
+	      nominated: _react.PropTypes.number,
+	      won: _react.PropTypes.number
+	    }).isRequired
+	  }).isRequired
+	};
+	
+	exports.default = AwardList;
+
+/***/ },
+/* 574 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(298);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var AwardItem = function AwardItem(_ref) {
+	  var award = _ref.award,
+	      name = _ref.name;
+	  return _react2.default.createElement(
+	    "div",
+	    { className: "row row-eq-height" },
+	    award.won && _react2.default.createElement(
+	      "div",
+	      { className: "col-xs-12 tile tile-layout" },
+	      _react2.default.createElement(
+	        "div",
+	        { className: "col-xs-3 tile-content text-muted" },
+	        _react2.default.createElement("i", { className: "fa fa-trophy fa-2x text-danger" })
+	      ),
+	      _react2.default.createElement(
+	        "div",
+	        { className: "col-xs-12 tile-content" },
+	        _react2.default.createElement(
+	          "h5",
+	          null,
+	          name,
+	          " Won"
+	        ),
+	        _react2.default.createElement(
+	          "h1",
+	          { className: "text-danger" },
+	          award.won
+	        )
+	      )
+	    ),
+	    award.nominated && _react2.default.createElement(
+	      "div",
+	      { className: "col-xs-12 tile tile-layout" },
+	      _react2.default.createElement(
+	        "div",
+	        { className: "col-xs-3 tile-content text-muted" },
+	        _react2.default.createElement("i", { className: "fa fa-trophy fa-2x text-info" })
+	      ),
+	      _react2.default.createElement(
+	        "div",
+	        { className: "col-xs-12 tile-content" },
+	        _react2.default.createElement(
+	          "h5",
+	          null,
+	          name,
+	          " Nominated"
+	        ),
+	        _react2.default.createElement(
+	          "h2",
+	          { className: "text-info" },
+	          award.nominated
+	        )
+	      )
+	    )
+	  );
+	};
+	
+	AwardItem.propTypes = {
+	  award: _react.PropTypes.shape({
+	    nominated: _react.PropTypes.number,
+	    won: _react.PropTypes.number
+	  }).isRequired,
+	  name: _react.PropTypes.string.isRequired
+	};
+	
+	exports.default = AwardItem;
+
+/***/ },
+/* 575 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(298);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _MovieGenreItem = __webpack_require__(576);
+	
+	var _MovieGenreItem2 = _interopRequireDefault(_MovieGenreItem);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var GenreList = function GenreList(_ref) {
+	  var genres = _ref.genres;
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'tile-grid' },
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'row' },
+	      _react2.default.createElement(
+	        'p',
+	        { className: 'list-group-item list-group-item-muted unselectable text-muted-dark' },
+	        'Genres'
+	      )
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'row row-eq-height' },
+	      genres.split(', ').map(function (name) {
+	        return _react2.default.createElement(_MovieGenreItem2.default, { name: name, key: name });
+	      })
+	    )
+	  );
+	};
+	
+	GenreList.propTypes = {
+	  genres: _react.PropTypes.string.isRequired
+	};
+	
+	exports.default = GenreList;
+
+/***/ },
+/* 576 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(298);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var GenreItem = function GenreItem(_ref) {
+	  var name = _ref.name;
+	  return _react2.default.createElement(
+	    "div",
+	    { className: "media-row col-xs-12 tile tile-layout" },
+	    _react2.default.createElement(
+	      "div",
+	      { className: "media-badge media-badge-xs" },
+	      _react2.default.createElement(
+	        "span",
+	        { className: "media-badge-container" },
+	        _react2.default.createElement("img", { alt: "", src: "dist/assets/" + name + "-icon.png" })
+	      ),
+	      _react2.default.createElement(
+	        "h4",
+	        { className: "line-tighter text-muted" },
+	        name
+	      )
+	    )
+	  );
+	};
+	
+	GenreItem.propTypes = {
+	  name: _react.PropTypes.string.isRequired
+	};
+	
+	exports.default = GenreItem;
+
+/***/ },
+/* 577 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(298);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Rating = function Rating(_ref) {
+	  var rated = _ref.rated;
+	  return _react2.default.createElement(
+	    "div",
+	    { className: "tile tile-layout" },
+	    _react2.default.createElement(
+	      "div",
+	      { className: "col-xs-2" },
+	      _react2.default.createElement("i", { className: "text-muted fa fa-users fa-3x" })
+	    ),
+	    _react2.default.createElement(
+	      "div",
+	      { className: "col-xs-6" },
+	      _react2.default.createElement(
+	        "div",
+	        { className: "tile-content" },
+	        _react2.default.createElement(
+	          "h3",
+	          null,
+	          "Film rating"
+	        )
+	      )
+	    ),
+	    _react2.default.createElement(
+	      "div",
+	      { className: "col-xs-2 text-left" },
+	      _react2.default.createElement(
+	        "div",
+	        { className: "tile-content" },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "" },
+	          _react2.default.createElement(
+	            "h1",
+	            { className: "text-danger" },
+	            rated
+	          )
+	        )
+	      )
+	    )
+	  );
+	};
+	
+	Rating.propTypes = {
+	  rated: _react.PropTypes.string.isRequired
+	};
+	
+	exports.default = Rating;
+
+/***/ },
+/* 578 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(298);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Synopsis = function Synopsis(_ref) {
+	  var plot = _ref.plot;
+	  return _react2.default.createElement(
+	    "li",
+	    { className: "list-group-item collapsible-item" },
+	    _react2.default.createElement(
+	      "div",
+	      {
+	        className: "collapsed", "data-toggle": "collapse",
+	        "data-target": "#synopsis-1", "aria-expanded": "false"
+	      },
+	      _react2.default.createElement(
+	        "h4",
+	        null,
+	        _react2.default.createElement(
+	          "strong",
+	          null,
+	          "Movie Synopsis"
+	        )
+	      )
+	    ),
+	    _react2.default.createElement(
+	      "ul",
+	      { id: "synopsis-1", className: "list-group", "aria-expanded": "false" },
+	      _react2.default.createElement(
+	        "li",
+	        { className: "list-group-item list-group-item-muted collapsible-item" },
+	        _react2.default.createElement(
+	          "p",
+	          { "data-toggle": "collapse", "aria-expanded": "false" },
+	          plot
+	        )
+	      )
+	    )
+	  );
+	};
+	
+	Synopsis.propTypes = {
+	  plot: _react.PropTypes.string.isRequired
+	};
+	
+	exports.default = Synopsis;
+
+/***/ },
+/* 579 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(298);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Poster = function Poster(_ref) {
+	  var poster = _ref.poster;
+	  return _react2.default.createElement(
+	    "li",
+	    { className: "list-group-item collapsible-item " },
+	    _react2.default.createElement(
+	      "div",
+	      { className: "collapsed", "data-toggle": "collapse", "data-target": "#poster-1", "aria-expanded": "false" },
+	      _react2.default.createElement(
+	        "h4",
+	        null,
+	        _react2.default.createElement(
+	          "strong",
+	          null,
+	          "Movie Poster"
+	        )
+	      )
+	    ),
+	    _react2.default.createElement(
+	      "ul",
+	      { id: "poster-1", className: "list-group ", "aria-expanded": "false" },
+	      _react2.default.createElement(
+	        "li",
+	        { className: "list-group-item list-group-item-muted collapsible-item" },
+	        _react2.default.createElement("img", { src: poster, alt: "" })
+	      )
+	    )
+	  );
+	};
+	
+	Poster.propTypes = {
+	  poster: _react.PropTypes.string.isRequired
+	};
+	
+	exports.default = Poster;
+
+/***/ },
+/* 580 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(298);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _CreditsItem = __webpack_require__(581);
+	
+	var _CreditsItem2 = _interopRequireDefault(_CreditsItem);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var CreditsList = function CreditsList(_ref) {
+	  var credits = _ref.credits,
+	      label = _ref.label;
+	  return _react2.default.createElement(
+	    'li',
+	    { className: 'list-group-item media-group-item collapsible-item' },
+	    _react2.default.createElement(
+	      'div',
+	      {
+	        className: 'media-row collapsed',
+	        'data-toggle': 'collapse',
+	        'data-target': '#' + label,
+	        'aria-expanded': 'false'
+	      },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'media-badge media-badge-xs' },
+	        _react2.default.createElement(
+	          'span',
+	          { className: 'media-badge-container' },
+	          _react2.default.createElement('img', { alt: '', src: 'dist/assets/' + label + '-icon.png' })
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h4',
+	          { className: 'line-tighter' },
+	          label
+	        )
+	      )
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { id: '' + label, className: 'list-group collapse', 'aria-expanded': 'false' },
+	      _react2.default.createElement(
+	        'ul',
+	        null,
+	        credits.split(',').map(function (name) {
+	          return _react2.default.createElement(_CreditsItem2.default, { name: name, key: name });
+	        })
+	      )
+	    )
+	  );
+	};
+	
+	CreditsList.propTypes = {
+	  credits: _react.PropTypes.string.isRequired,
+	  label: _react.PropTypes.string.isRequired
+	};
+	
+	exports.default = CreditsList;
+
+/***/ },
+/* 581 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(298);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var CreditsItem = function CreditsItem(_ref) {
+	  var name = _ref.name;
+	  return _react2.default.createElement(
+	    "li",
+	    { className: "list-group-item padding-1-left", key: name },
+	    _react2.default.createElement(
+	      "h4",
+	      { className: "line-tighter" },
+	      name.split('(')[0]
+	    ),
+	    name.split('(')[1] && _react2.default.createElement(
+	      "h5",
+	      { className: "line-tighter text-muted" },
+	      name.split('(')[1].split(')')
+	    )
+	  );
+	};
+	
+	CreditsItem.propTypes = {
+	  name: _react.PropTypes.string.isRequired
+	};
+	
+	exports.default = CreditsItem;
+
+/***/ },
+/* 582 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(298);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var NoSelection = function NoSelection() {
+	  return _react2.default.createElement(
+	    "div",
+	    { className: "notice" },
+	    _react2.default.createElement(
+	      "div",
+	      { className: "media-badge media-badge-lg media-badge-info-inverse img-circle" },
+	      _react2.default.createElement(
+	        "span",
+	        { className: "media-badge-container" },
+	        _react2.default.createElement(
+	          "h1",
+	          { className: "lead" },
+	          _react2.default.createElement("i", { className: "fa fa-flag" })
+	        )
+	      )
+	    ),
+	    _react2.default.createElement(
+	      "h2",
+	      { className: "text-info" },
+	      _react2.default.createElement(
+	        "strong",
+	        null,
+	        "No movie selected"
+	      )
+	    ),
+	    _react2.default.createElement(
+	      "p",
+	      null,
+	      "Please select a movie to view its details."
+	    )
+	  );
+	};
+	
+	exports.default = NoSelection;
+
+/***/ },
+/* 583 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reduxThunk = __webpack_require__(584);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
 	var _redux = __webpack_require__(485);
 	
-	var _MovieList = __webpack_require__(575);
+	var _MovieList = __webpack_require__(585);
 	
 	var _MovieList2 = _interopRequireDefault(_MovieList);
 	
-	var _MovieDetails = __webpack_require__(576);
+	var _MovieDetails = __webpack_require__(586);
 	
 	var _MovieDetails2 = _interopRequireDefault(_MovieDetails);
 	
@@ -37541,7 +38073,7 @@
 	exports.default = configureStore;
 
 /***/ },
-/* 574 */
+/* 584 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -37569,7 +38101,7 @@
 	exports['default'] = thunk;
 
 /***/ },
-/* 575 */
+/* 585 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -37579,7 +38111,7 @@
 	});
 	var initialState = {
 	  movies: [],
-	  selected_movie: 'Arrival'
+	  selectedMovie: ''
 	};
 	
 	var movieListReducer = function movieListReducer() {
@@ -37588,9 +38120,9 @@
 	
 	  switch (action.type) {
 	    case 'VIEW_MOVIES':
-	      return { movies: action.movies, selected_movie: action.selected_movie };
+	      return { movies: action.movies, selectedMovie: action.selectedMovie };
 	    case 'SELECT_MOVIE':
-	      return { movies: state.movies, selected_movie: action.selected_movie };
+	      return { movies: state.movies, selectedMovie: action.selectedMovie };
 	    default:
 	      return state;
 	  }
@@ -37599,7 +38131,7 @@
 	exports.default = movieListReducer;
 
 /***/ },
-/* 576 */
+/* 586 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
