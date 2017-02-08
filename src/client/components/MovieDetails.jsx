@@ -30,7 +30,7 @@ function parsedAwards(text) {
 }
 
 const MovieDetail = ({ details }) => (
-  <div className="row">
+  <div className="outer">
     { !details.Title && <NoSelection />}
     { details.Title &&
       <div className="row">
