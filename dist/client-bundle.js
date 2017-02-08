@@ -36708,6 +36708,25 @@
 	  };
 	};
 	
+	function fetchDetails(id) {
+	  return function (dispatch) {
+	    dispatch(requestDetails(id));
+	    return (0, _isomorphicFetch2.default)('https://www.omdbapi.com/?t=' + id + '&y=2016&plot=short&r=json').then(function (response) {
+	      return response.json();
+	    }).then(function (json) {
+	      return dispatch(receiveDetails(id, json));
+	    });
+	  };
+	}
+	
+	function connectLiveStax() {
+	  return function (dispatch) {
+	    Livestax.store.watch('best-picture-nominations.selection', function (movie) {
+	      return dispatch(hardCodedDetails(movie));
+	    });
+	  };
+	}
+	
 	var hardCodedDetails = exports.hardCodedDetails = function hardCodedDetails(id) {
 	  return {
 	    type: RECEIVE_DETAILS,
@@ -36743,25 +36762,6 @@
 	    }[id]
 	  };
 	};
-	
-	function fetchDetails(id) {
-	  return function (dispatch) {
-	    dispatch(requestDetails(id));
-	    return (0, _isomorphicFetch2.default)('https://www.omdbapi.com/?t=' + id + '&y=2016&plot=short&r=json').then(function (response) {
-	      return response.json();
-	    }).then(function (json) {
-	      return dispatch(receiveDetails(id, json));
-	    });
-	  };
-	}
-	
-	function connectLiveStax() {
-	  return function (dispatch) {
-	    Livestax.store.watch('best-picture-nominations.selection', function (movie) {
-	      return dispatch(hardCodedDetails(movie));
-	    });
-	  };
-	}
 
 /***/ },
 /* 567 */
@@ -37430,7 +37430,7 @@
 	  var bigAwardStatus = text.split(' ')[0].toLowerCase();
 	
 	  // extracts whether the 'big' award was the Oscars or Golden Globes
-	  var bigAwardType = text.split('.')[1].includes('Oscars') ? 'oscars' : 'goldenGlobes';
+	  var bigAwardType = text.split('.')[0].includes('Oscars') ? 'oscars' : 'goldenGlobes';
 	
 	  return _ref = {}, _defineProperty(_ref, bigAwardType, _defineProperty({}, bigAwardStatus, parseInt(bigAwardNum, 10))), _defineProperty(_ref, 'awards', { won: parseInt(winsNum, 10), nominated: parseInt(nominationsWin, 10) }), _ref;
 	}

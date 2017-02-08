@@ -21,7 +21,7 @@ function parsedAwards(text) {
   const bigAwardStatus = text.split(' ')[0].toLowerCase();
 
   // extracts whether the 'big' award was the Oscars or Golden Globes
-  const bigAwardType = text.split('.')[1].includes('Oscars') ? 'oscars' : 'goldenGlobes';
+  const bigAwardType = text.split('.')[0].includes('Oscars') ? 'oscars' : 'goldenGlobes';
 
   return {
     [bigAwardType]: { [bigAwardStatus]: parseInt(bigAwardNum, 10) },
